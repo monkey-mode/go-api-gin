@@ -1,5 +1,5 @@
-# Keep .vscode directories
-!.vscode/
+### VisualStudioCode ###
+!.vscode
 
 # Ignore compiled binaries
 *.exe
