@@ -1,0 +1,10 @@
+# Ignore binary files
+*.exe
+*.out
+*
+
+# Ignore vendor directories
+vendor/
+
+# Ignore coverage reports
+coverage.txt
