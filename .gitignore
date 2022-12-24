@@ -1,7 +1,11 @@
-# Ignore binary files
+# Ignore compiled binaries
 *.exe
 *.out
 *
+
+# Ignore compiled object files
+*.o
+*.a
 
 # Ignore vendor directories
 vendor/
