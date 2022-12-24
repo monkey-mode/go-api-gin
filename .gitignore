@@ -1,3 +1,6 @@
+# Keep .vscode directories
+!.vscode/
+
 # Ignore compiled binaries
 *.exe
 *.out
