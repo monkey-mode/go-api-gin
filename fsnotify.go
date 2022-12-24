@@ -7,7 +7,7 @@ import (
 	"github.com/fsnotify/fsnotify"
 )
 
-func main() {
+func watcher() {
 	log.Println("start : file watcher")
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {

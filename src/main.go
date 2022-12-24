@@ -1,46 +1,41 @@
 package main
 
 import (
-	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
-    "github.com/swaggo/gin-swagger"
-    "github.com/swaggo/files"
+
+	"github.com/gin-gonic/gin"
+
+	docs "github.com/monkey-mode/go-api-gin/docs"
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-// @title Pratice Go API
-// @version 1.0
-// @description.markdown
-// @termsOfService http://somewhere.com/
+// @BasePath /api/v1
 
-// @contact.name API Support
-// @contact.url http://somewhere.com/support
-// @contact.email support@somewhere.com
-
-// @schemes https http
-
-// @securityDefinitions.apikey ApiKeyAuth
-// @in header
-// @name Authorization
+// PingExample godoc
+// @Summary ping example
+// @Schemes
+// @Description do ping
+// @Tags example
+// @Accept json
+// @Produce json
+// @Success 200 {string} Helloworld
+// @Router /example/helloworld [get]
+func Helloworld(g *gin.Context) {
+	g.JSON(http.StatusOK, "helloworld")
+}
 
 func main() {
 	r := gin.Default()
-    // Use the `swaggo/gin-swagger` middleware to generate Swagger documentation for the API endpoints.
-	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-
-	// Hello godoc
-	// @summary Helllo World
-	// @description Hello world for the service
-	// @id HelloWorld
-	// @produce plain
-	// @response 200 {string} string "Hello, World!"
-	// @router /hello [get]
-	r.GET("/hello", func(c *gin.Context) {
-		// Create a new user
-		// (omitted for brevity)
-		c.String(http.StatusOK, "Hello, World!")
-		fmt.Println("Hello, World!")
-	})
+	docs.SwaggerInfo.BasePath = "/api/v1"
+	v1 := r.Group("/api/v1")
+	{
+		eg := v1.Group("/example")
+		{
+			eg.GET("/helloworld", Helloworld)
+		}
+	}
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	r.Run() // listen and serve on 0.0.0.0:8080
 }

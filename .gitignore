@@ -1,17 +1,8 @@
-### VisualStudioCode ###
-!.vscode
-
 # Ignore compiled binaries
 *.exe
 *.out
-*
 
 # Ignore compiled object files
-*.o
-*.a
+main
+fsnotify
 
-# Ignore vendor directories
-vendor/
-
-# Ignore coverage reports
-coverage.txt
